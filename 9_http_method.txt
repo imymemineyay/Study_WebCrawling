@@ -1,0 +1,28 @@
+HTTP 프로토콜을 통해서 서버에 요청을 보내면 서버는 그 요청에 맞게 응답을 해줌
+이때 요청에 포함되는 것 중에 HTTP METHOD라는 것이 있음
+
+HTTP METHOD : GET, POST...
+
+GET : 어떠한 내용이 누군가가 볼 수 있게 url에 적어서 보내는 방식
+POST : url이 아닌 HTTP 메세지 Body에 숨겨서 보내는 방식 
+
+1. GET 방식
+
+https://www.coupang.com/np/search?q=%EB%85%B8%ED%8A%B8%EB%B6%81&
+channel=user&component=&eventCategory=SRP&trcid=&traid=&sorter=scoreDesc&
+minPrice=&maxPrice=&priceRange=&filterType=&listSize=36&filter=&
+isPriceRange=false&brand=&offerCondition=&rating=0&page=1&
+rocketAll=false&searchIndexingToken=1=9&backgroundColor=
+
+https://www.coupang.com/np/search? 이렇게 물음표(?)나오고 다른 텍스트가 있는 것이 GET 방식
+→ 의미 : ? 뒤에 있는 것들로 부터 변수와 값 
+→ 즉, q (변수) = %EB%85%B8%ED%8A%B8%EB%B6%81 (값)
+→ & 표시로 구분함
+→ 큰 데이터 보내지 못함 (제한 있음)
+
+2. POST 방식
+크기 큰 데이터, 개인정보에 사용
+페이지는 변하는데 url은 그대로라면 POST 방식
+
+
+
