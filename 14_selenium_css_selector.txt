@@ -1,0 +1,154 @@
+참고 : https://www.youtube.com/watch?v=L7nne5RhyPw&t=924s
+
+유튜브 강의 중에 CSS 선택자에 대해 강의하시는 분이 곽기영 선생님의 자료밖에 없어서 해당 자료로 공부함
+✷ R베이스임
+
+
+CSS (Cascading Style Sheet)
+: 디자인과 요소 스타일을 정의함 
+→ html 요소가 화면상에 출력되는 모양 결정
+→ 요소와 스타일성을 이용해서 웹페이지로부터 특정요소에 포함된 데이터 추출하는 목적으로도 사용가능
+: 선택자와 선언블록으로 구성됨
+👉🏼 xpath 와 비슷하게 css의 선택자를 이용해서 트리구조의 문서로부터 노드셋 추출,
+그 노드셋으로 부터 우리가 원하는 데이터 수집
+
+⓵ 선택자 
+스타일을 적용하고자 하는 html 요소를 나타냄
+
+⓶ 선언블록
+적용할 스타일 정의
+
+ex. 웹페이지 내 모든 <p> 태그의 콘텐츠를 10픽셀 크기의 파란색 글씨로 가운데 정렬
+
+selector {property1: value1; property2: value2}
+→ selector(선택자)  {}(선언블록)
+
+p{
+    color:blue,
+    text-align:center,
+    font-size:10px;
+}
+
+→  웹페이지 내 p 태그에 대해 적용할 스타일 정의
+
+==========================================================================
+
+CSS 선택자
+
+- CSS 선택자 (CSS selector)는 웹페이지 내에서 특정 html요소를 선택하는 데 이용된다.
+- 요소 이름, id, 클래스 등이 css 선택자로 이용될 수 있다.
+
+요소 선택자
+
+- 요소 선택자 (element selector)는 요소 이름으로 특정 요소를 선택한다.
+- 웹페이지 내의 모든 <h1>요소(태그)를 선택한다. 
+
+h1{
+    color:red;
+    font-size:12px;
+}
+
+-------------------------------------------------------------------------
+
+ID 선택자
+
+- ID 선택자 (ID selector)는 html 요소의 id속성값을 이용하여 특정 요소를 선택한다.
+- 특정 id 속성값을 갖는 요소를 선택하기 위해서는 요소의 id 속성값 앞에 해시#를 붙인다.
+- id='s1'속성값을 갖는 요소를 선택한다.
+
+#s1 {
+    background-color:lightblue;
+    font-style:italic;
+}
+
+-------------------------------------------------------------------------
+
+클래스 선택자
+
+- 클래스 선택자 (class selector)는 특정 class 속성값을 갖는 html 요소를 선택한다.
+- 특정 class 속성값을 갖는 요소를 선택하기 위해서는 요소의 class속성값 앞에 마침표를 붙인다.
+- class='center' 속성값을 갖는 요소를 선택한다.
+
+.center{
+    color:blue;
+    text-align:center;
+}
+
+
+==========================================================================
+
+
+CSS 선택자를 이용한 노드 선택, 요소 이름, ID, 클래스, 속성을 이용하여 특정 노드를 선택
+
+선택자                설명
+*              |  모든 노드를 선택
+name           |  노드 이름이 name인 노드 선택
+.classval      |  class 속성값이 classval인 노드(class='classval')를 선택
+#idval         |  id 속성값이 idval인 노드(id='idval')를 선택
+[attr]         |  속성 이름이 attr인 노드를 선택
+[attr='value'] |  속성 attr 의 속성값이 value인 노드 선택
+:nth-child(n)  |  n번째 자식 노드를 선택  
+
+==========================================================================
+
+CSS 선택자 결함. 결합 연산자를 이용하여 노드 간의 상대적 관계 정의
+→ 노드 추출이 복잡해지면 하나의 CSS로 특정 노드 추출하는데 한계 발생
+→ 노드트리상의 노드 상대적 위치 사용하면 정교한 노드 선택 가능
+
+선택자 결함        |      설명
+ CS1 CS2        |  CS1 에 의해 매칭된 노드의 자손노드 가운데 CS2에 의해 매칭된 노드 선택
+CS1 > CS2       |  CS1 에 의해 매칭된 노드의 자식노드 가운데 CS2에 의해 매칭된 노드 선택
+CS1 ~ CS2       |  CS1 에 의해 매칭된 노드의 형제노드 가운데 CS2에 의해 매칭된 노드 선택
+CS1 + CS2       |  CS1 에 의해 매칭된 노드의 바로 뒤 형제 노드이면서 CS2에 의해 매칭된 노드 선택
+
+
+ex. 사용법
+'div p i' or 'div i' or 'p > i'
+
+
+==========================================================================
+
+
+CSS 선택자와 xpath 비교 
+(CSS 선택자, 단순한 구조 덕분에 사용이 편리하지만 정교한 탐색을 할 수 없는 한계를 가지고 있음)
+
+CSS 선택자          |      xpath              | 설명
+title              |    //title              | 모든 <title>노드를 선택
+div i              |    //div//i             | <div>노드 아래의 <i> 자손노드를 선택
+p > i              |    //p/i                | <p> 노드 바로 아래의 <i> 자식노드를 선택
+div[genre='drama'] |    //div[@genre='drama']| genre 속성값이 drama인 <div> 노드 선택
+
+
+
+==========================================================================
+
+R에서 추출하는 법
+
+예시.
+
+html.string <- C(
+    '<!DOCTYPE html>',
+    '<html>',
+    '<head>',
+    '<title> Movie Quotes </title>',
+    '</head>',
+    '<body>',
+    '<h1> Famous Quotes from movies </h1>',
+    '<div time = '1h 39min' genre='drama' lang='english'>',
+    '<h2> Ali MacGraw as Jennifer Cavilleri</h2>',
+    '<p><i>Love means never having to say you\'re!!</i></p>',
+    ----
+
+)
+이렇게 html 이 있다고 치고
+
+i 노드 셋을 추출하고 i 노드 셋에 포함된 텍스트 추출하는 작업
+→ 
+node <- html_nodes(x = page, css = 'div i')
+
+text <- html_text(x=node)
+text 
+
+
+SelectorGadget 크롬 확장자를 이용해 편리하게 CSS selector 추출 가능
+
